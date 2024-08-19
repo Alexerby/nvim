@@ -2,6 +2,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 
+
 -- Barbar
 ---------------------
 
@@ -42,3 +43,10 @@ map('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- Neotree
 ---------------------
 map('n', '<leader>e', '<Cmd>Neotree toggle<CR>', opts)
+
+
+-- LSP
+---------------------
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+
