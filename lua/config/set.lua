@@ -7,8 +7,6 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.conceallevel = 1
 
--- Set clipboard to + register
-vim.api.nvim_set_option("clipboard", "unnamed")
-
-
+vim.opt.clipboard = "unnamedplus"

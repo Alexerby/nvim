@@ -1,3 +1,5 @@
+
+-- TODO: Remove LuaSnip as ultisnip is already in use?
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -11,6 +13,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "quangnguyen30192/cmp-nvim-ultisnips",
     },
 
     config = function()
@@ -86,6 +89,7 @@ return {
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
+                { name = 'ultisnips' },
             }, {
                 { name = 'buffer' },
             })
