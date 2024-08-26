@@ -2,6 +2,10 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 
+-- Misc
+map('i', 'jj', '<ESC>', opts )
+map('n', '<leader>d', '<Cmd>nohlsearch<CR>', opts)
+
 
 -- Barbar
 ---------------------
@@ -47,6 +51,7 @@ map('n', '<leader>e', '<Cmd>Neotree toggle<CR>', opts)
 
 -- LSP
 ---------------------
-vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+map('n', 'dg', '<cmd>nohlsearch', opts)
 
