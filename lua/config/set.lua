@@ -10,3 +10,4 @@ vim.opt.expandtab = true
 vim.opt.conceallevel = 1
 
 vim.opt.clipboard = "unnamedplus"
+
