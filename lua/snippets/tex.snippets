@@ -1,3 +1,4 @@
+
 snippet bl "Block"
 \begin{$1}
 	$2
@@ -6,7 +7,7 @@ snippet bl "Block"
 $3
 endsnippet
 
-snippet mb "Math block" b
+snippet mb "Math block" iAb
 \[
 	$1
 \]
@@ -14,7 +15,7 @@ snippet mb "Math block" b
 $2
 endsnippet
 
-snippet sq "Square root"
+snippet sq "Square root" A
 \\sqrt{$1}
 endsnippet
 
@@ -22,23 +23,23 @@ snippet mi "Math inline"
 \( $1 \) $2
 endsnippet
 
-snippet int "Integral"
+snippet int "Integral" A
 \int{$1} $2
 endsnippet
 
-snippet lim "Limit"
+snippet lim "Limit" A
 \lim_{$1} $2
 endsnippet
 
-snippet frac "Fraction"
+snippet frac "Fraction" A
 \frac{$1}{$2} $3
 endsnippet
 
-snippet set "Set"
+snippet set "Set" A
 \\{ $1 \\} $2
 endsnippet
 
-snippet bb "Blackboard Characters"
+snippet bb "Blackboard Characters" iA
 \mathbb{$1} $2
 endsnippet
 
@@ -52,4 +53,56 @@ endsnippet
 
 snippet sum "Sum" w
 \sum_{${1:n=0}}^{${2:\infty}}
+endsnippet
+
+snippet sec "Section" bA
+\section{$1}
+$2
+endsnippet
+
+snippet ssec "Section" bA
+\subsection{$1}
+$2
+endsnippet
+
+snippet sssec "Section" bA
+\subsubsection{$1}
+$2
+endsnippet
+
+snippet pf "Proof" bA 
+\pf{$1}{
+	$2
+}
+$3
+endsnippet
+
+snippet ex "Example" bA
+\ex{$1}{
+	$2
+}
+$3
+endsnippet
+
+snippet df "Definition" bA
+\df{$1}{
+	$2
+}
+$2
+endsnippet
+
+
+snippet nt "Definition" bA
+\nt{
+	$1
+}
+$2
+endsnippet
+
+
+snippet th "Definition" bA
+\thm{$1}{
+	$2
+}
+$3
 endsnippet
