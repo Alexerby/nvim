@@ -165,7 +165,7 @@ endsnippet
 
 context "math()"
 snippet set "Set" A
-\\{ $1 \\} $2
+\\{ $1 \\}
 endsnippet
 
 context "math()"
@@ -192,7 +192,12 @@ endsnippet
 
 context "math()"
 snippet bb "Blackboard Characters" iA
-\mathbb{$1} $2
+\mathbb{$1} 
+endsnippet
+
+context "math()"
+snippet mcal "Mathcal Characters" iA
+\mathcal{$1} 
 endsnippet
 
 context "math()"
@@ -224,4 +229,9 @@ context "math()"
 snippet nr "new row" iA
 \\\
 
+endsnippet
+
+context "math()"
+snippet binom "Binomial" iA
+\binom{$1}{$2}
 endsnippet
