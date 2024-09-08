@@ -33,14 +33,20 @@ return {
                 "rust_analyzer",
                 "pyright",
                 "gopls",
-                "texlab"
+                "texlab",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+                          -- https://github.com/neovim/nvim-lspconfig/pull/3232
+                          -- https://github.com/neovim/nvim-lspconfig/pull/3232#issuecomment-2331025714 || Temporary fix from this github comment
+                          if server_name == "tsserver" then
+                            server_name = "ts_ls"
+                          end
+                          local capabilities = require("cmp_nvim_lsp").default_capabilities()
+                          require("lspconfig")[server_name].setup({
+                            capabilities = capabilities,
+                          })
+                        end,
 
                 zls = function()
                     local lspconfig = require("lspconfig")
@@ -74,6 +80,7 @@ return {
                 end,
             }
         })
+
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
