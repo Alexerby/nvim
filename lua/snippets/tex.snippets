@@ -27,7 +27,7 @@ snippet mb "Math block" bA
 $2
 endsnippet
 
-snippet mi "Math inline"
+snippet mi "Math inline" w
 \( $1 \) $2
 endsnippet
 
@@ -98,6 +98,14 @@ snippet th "Theorem" bA
 
 endsnippet
 
+
+snippet sol "solution" bA
+\sol{$1}{
+	$2
+}
+
+endsnippet
+
 context "math()"
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
@@ -134,8 +142,13 @@ snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
 endsnippet 
 
 context "math()"
-snippet cc "subset" Ai
+snippet pss "Proper subset" Ai
 \subset 
+endsnippet
+
+context "math()"
+snippet wss "Subset" Ai
+\subseteq 
 endsnippet
 
 context "math()"
@@ -192,7 +205,7 @@ endsnippet
 
 context "math()"
 snippet bb "Blackboard Characters" iA
-\mathbb{$1} 
+\mathbb{$1}
 endsnippet
 
 context "math()"
@@ -221,8 +234,8 @@ snippet sm "setminus" iA
 endsnippet
 
 context "math()"
-snippet ems "emptyset" iA
-\emptyset 
+snippet ems "varnothing" iA
+\varnothing 
 endsnippet
 
 context "math()"
@@ -234,4 +247,45 @@ endsnippet
 context "math()"
 snippet binom "Binomial" iA
 \binom{$1}{$2}
+endsnippet
+
+context "math()"
+snippet infty "Infinity" iA
+\infty 
+endsnippet
+
+context "math()"
+snippet or "OR operator" iA
+\lor 
+endsnippet
+
+context "math()"
+snippet and "AND operator" iA
+\land 
+endsnippet
+
+context "math()"
+snippet neq "Not equal to" iA
+\neq 
+endsnippet
+
+
+context "math()"
+snippet lra "Left Right arrow" iA
+\Leftrightarrow 
+endsnippet
+
+context "math()"
+snippet leq "Less of equal to" iA
+\leq 
+endsnippet
+
+context "math()"
+snippet geq "Greater or equal to" iA
+\geq 
+endsnippet
+
+context "math()"
+snippet imp "Implies" iA
+\implies 
 endsnippet
