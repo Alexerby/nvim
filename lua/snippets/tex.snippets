@@ -20,10 +20,7 @@ $3
 endsnippet
 
 snippet mb "Math block" bA
-\[
-	$1
-\]
-
+\[ $1 \]
 $2
 endsnippet
 
@@ -56,7 +53,7 @@ $2
 endsnippet
 
 snippet pf "Proof" bA 
-\pf{$1}{
+\pf{$1}~{
 	$2
 }
 
@@ -91,13 +88,18 @@ snippet nt "Note" bA
 
 endsnippet
 
-snippet th "Theorem" bA
+snippet theo "Theorem" bA
 \thm{$1}{
 	$2
 }
 
 endsnippet
 
+
+snippet par "Paragraph" bA
+\paragraph{$1}
+$2
+endsnippet
 
 snippet sol "solution" bA
 \sol{$1}{
@@ -269,6 +271,10 @@ snippet neq "Not equal to" iA
 \neq 
 endsnippet
 
+context "math()"
+snippet neg "'Not' logic operator" iA
+\neg 
+endsnippet
 
 context "math()"
 snippet lra "Left Right arrow" iA
@@ -288,4 +294,93 @@ endsnippet
 context "math()"
 snippet imp "Implies" iA
 \implies 
+endsnippet
+
+context "math()"
+snippet pm "plusminus" iA
+\pm 
+endsnippet
+
+context "math()"
+snippet lambda "lambda" iA
+\lambda 
+endsnippet
+
+context "math()"
+snippet fall "for all" iA
+\forall 
+endsnippet
+
+
+context "math()"
+snippet exists "exists" iA
+\exists 
+endsnippet
+
+
+context "math()"
+snippet pref "pref" iA
+\pref 
+endsnippet
+
+context "math()"
+snippet spref "strict pref" iA
+\strictpref 
+endsnippet
+
+
+context "math()"
+snippet indiff "indifference" iA
+\indiff 
+endsnippet
+
+context "math()"
+snippet lesspref "less preferred" iA
+\lesspref 
+endsnippet
+
+context "math()"
+snippet rho "rho" iA
+\rho
+endsnippet
+
+context "math()"
+snippet part "partial derivative" iA
+\partial
+endsnippet
+
+context "math()"
+snippet lagr "Lagrange" iA
+\Lagr
+endsnippet
+
+context "math()"
+snippet soe "Succsim (succeds or equal)" iA
+\succsim 
+endsnippet
+
+
+context "math()"
+snippet beta "beta" iA
+\beta 
+endsnippet
+
+context "math()"
+snippet bar "bar" iA
+\bar{$1} 
+endsnippet
+
+context "math()"
+snippet sin "sin" iA
+\sin{$1} 
+endsnippet
+
+context "math()"
+snippet cos "cos" iA
+\cos{$1} 
+endsnippet
+
+context "math()"
+snippet tan "tan" iA
+\tan{$1} 
 endsnippet
