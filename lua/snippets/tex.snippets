@@ -124,6 +124,16 @@ snippet sr "^2" iA
 endsnippet
 
 context "math()"
+snippet _ "subscript" iA
+_{$1}
+endsnippet
+
+context "math()"
+snippet ss "superscript" iA
+^{$1}
+endsnippet
+
+context "math()"
 snippet cb "^3" iA
 ^3
 endsnippet
@@ -138,10 +148,16 @@ snippet td "superscript" iA
 ^{$1}$0
 endsnippet
 
+
 context "math()"
-snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
-\vec{`!p snip.rv=match.group(1)`}
-endsnippet 
+snippet cdot "cdot" iA
+\cdot 
+endsnippet
+
+# context "math()"
+# snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
+# \vec{`!p snip.rv=match.group(1)`}
+# endsnippet 
 
 context "math()"
 snippet pss "Proper subset" Ai
@@ -211,6 +227,11 @@ snippet bb "Blackboard Characters" iA
 endsnippet
 
 context "math()"
+snippet bf "Bold Math Characters" iA
+\mathbf{$1}
+endsnippet
+
+context "math()"
 snippet mcal "Mathcal Characters" iA
 \mathcal{$1} 
 endsnippet
@@ -257,12 +278,12 @@ snippet infty "Infinity" iA
 endsnippet
 
 context "math()"
-snippet or "OR operator" iA
+snippet loor "OR operator" iA
 \lor 
 endsnippet
 
 context "math()"
-snippet and "AND operator" iA
+snippet loand "AND operator" iA
 \land 
 endsnippet
 
@@ -279,6 +300,12 @@ endsnippet
 context "math()"
 snippet lra "Left Right arrow" iA
 \Leftrightarrow 
+endsnippet
+
+
+context "math()"
+snippet llra "Long Left Right arrow" iA
+\Longleftrightarrow 
 endsnippet
 
 context "math()"
@@ -301,10 +328,6 @@ snippet pm "plusminus" iA
 \pm 
 endsnippet
 
-context "math()"
-snippet lambda "lambda" iA
-\lambda 
-endsnippet
 
 context "math()"
 snippet fall "for all" iA
@@ -340,13 +363,13 @@ snippet lesspref "less preferred" iA
 endsnippet
 
 context "math()"
-snippet rho "rho" iA
-\rho
+snippet part "partial derivative" iA
+\partial 
 endsnippet
 
 context "math()"
-snippet part "partial derivative" iA
-\partial
+snippet nabla "gradient" iA
+\nabla 
 endsnippet
 
 context "math()"
@@ -372,15 +395,153 @@ endsnippet
 
 context "math()"
 snippet sin "sin" iA
-\sin{$1} 
+\sin{($1)} 
 endsnippet
 
 context "math()"
 snippet cos "cos" iA
-\cos{$1} 
+\cos{($1)} 
 endsnippet
 
 context "math()"
 snippet tan "tan" iA
 \tan{$1} 
+endsnippet
+
+context "math()"
+snippet ln "ln" iA
+\ln{($1)} 
+endsnippet
+
+context "math()"
+snippet txt "text" iA
+\text{$1} 
+endsnippet
+
+
+context "math()"
+snippet max "max" iA
+\max 
+endsnippet
+
+context "math()"
+snippet min "min" iA
+\min
+endsnippet
+
+context "math()"
+snippet "(alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega|Alpha|Beta|Gamma|Delta|Epsilon|Zeta|Eta|Theta|Iota|Kappa|Lambda|Mu|Nu|Xi|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)" "auto Greek letter" wrA
+`!p
+greek_map = {
+    'alpha': '\\alpha',
+    'beta': '\\beta',
+    'gamma': '\\gamma',
+    'delta': '\\delta',
+    'epsilon': '\\epsilon',
+    'zeta': '\\zeta',
+    'eta': '\\eta',
+    'theta': '\\theta',
+    'iota': '\\iota',
+    'kappa': '\\kappa',
+    'lambda': '\\lambda',
+    'mu': '\\mu',
+    'nu': '\\nu',
+    'xi': '\\xi',
+    'omicron': '\\omicron',
+    'pi': '\\pi',
+    'rho': '\\rho',
+    'sigma': '\\sigma',
+    'tau': '\\tau',
+    'upsilon': '\\upsilon',
+    'phi': '\\phi',
+    'chi': '\\chi',
+    'psi': '\\psi',
+    'omega': '\\omega',
+    'Alpha': '\\Alpha',
+    'Beta': '\\Beta',
+    'Gamma': '\\Gamma',
+    'Delta': '\\Delta',
+    'Epsilon': '\\Epsilon',
+    'Zeta': '\\Zeta',
+    'Eta': '\\Eta',
+    'Theta': '\\Theta',
+    'Iota': '\\Iota',
+    'Kappa': '\\Kappa',
+    'Lambda': '\\Lambda',
+    'Mu': '\\Mu',
+    'Nu': '\\Nu',
+    'Xi': '\\Xi',
+    'Omicron': '\\Omicron',
+    'Pi': '\\Pi',
+    'Rho': '\\Rho',
+    'Sigma': '\\Sigma',
+    'Tau': '\\Tau',
+    'Upsilon': '\\Upsilon',
+    'Phi': '\\Phi',
+    'Chi': '\\Chi',
+    'Psi': '\\Psi',
+    'Omega': '\\Omega'
+}
+
+if match.group(0) in greek_map:
+    snip.rv = greek_map[match.group(0)]
+else:
+    snip.rv = match.group(0)
+`
+endsnippet
+
+
+
+snippet articleTemplate "LaTeX Article with Template" b
+\\documentclass{article}
+\\usepackage{articleTemplate}
+
+\\author{Alexander Eriksson}
+\\title{$1}
+
+\\begin{document}
+
+\\maketitle
+
+$2
+
+\\end{document}
+endsnippet
+
+# snippet taylor "taylor" w
+# \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
+# endsnippet
+
+snippet lr( "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+snippet lr| "left| right|" i
+\left| ${1:${VISUAL}} \right| $0
+endsnippet
+
+snippet lr{ "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet lrb "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet lr[ "left[ right]" i
+\left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+snippet lra "leftangle rightangle" iA
+\left<${1:${VISUAL}} \right>$0
+endsnippet
+
+context "math()"
+snippet vec "vector" iA
+\vec{$1} 
+endsnippet
+
+context "math()"
+snippet hat "hat" iA
+\hat{$1} 
 endsnippet

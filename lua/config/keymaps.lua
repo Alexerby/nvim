@@ -55,3 +55,6 @@ map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 map('n', 'dg', '<cmd>nohlsearch', opts)
 
+
+
+vim.api.nvim_set_keymap('n', '<F4>', ':w<CR>:!python3 %<CR>', { noremap = true, silent = true })
