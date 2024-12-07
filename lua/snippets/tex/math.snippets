@@ -1,4 +1,3 @@
-# extends tex
 
 global !p
 def math():
@@ -10,7 +9,6 @@ def comment():
 def env(name):
 	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
 	return x != '0' and y != '0'
-
 endglobal
 
 
@@ -148,7 +146,7 @@ snippet "([a-zA-Z])bar" "bar" riA
 endsnippet
 
 context "math()"
-snippet sq "Square root" A
+snippet sq "Square root" iA
 \\sqrt{$1}
 endsnippet
 
