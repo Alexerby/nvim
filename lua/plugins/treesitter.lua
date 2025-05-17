@@ -29,6 +29,7 @@ return {
         "typescript",
         "vim",
         "vimdoc",
+        "latex",
         "xml",
         "yaml",
       },
