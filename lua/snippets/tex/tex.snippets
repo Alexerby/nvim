@@ -8,12 +8,14 @@ $3
 endsnippet
 
 snippet mb "Math block" bA
-\[ $1 \]
+\[ 
+	$1 
+\]
 $2
 endsnippet
 
-snippet mi "Math inline" w
-\( $1 \) $2
+snippet mm "Math inline" A
+\( $1 \)
 endsnippet
 
 snippet tb "Text bold"
@@ -56,27 +58,4 @@ $2
 \\end{document}
 endsnippet
 
-snippet lr( "left( right)" iA
-\left( ${1:${VISUAL}} \right) $0
-endsnippet
-
-snippet lr| "left| right|" iA
-\left| ${1:${VISUAL}} \right| $0
-endsnippet
-
-snippet lr{ "left\{ right\}" iA
-\left\\{ ${1:${VISUAL}} \right\\} $0
-endsnippet
-
-snippet lrb "left\{ right\}" iA
-\left\\{ ${1:${VISUAL}} \right\\} $0
-endsnippet
-
-snippet lr[ "left[ right]" iA
-\left[ ${1:${VISUAL}} \right] $0
-endsnippet
-
-snippet lra "leftangle rightangle" iA
-\left<${1:${VISUAL}} \right>$0
-endsnippet
 

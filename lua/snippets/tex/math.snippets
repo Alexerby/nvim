@@ -33,8 +33,13 @@ snippet cb "^3" iA
 endsnippet
 
 context "math()"
-snippet to "to" iA
+snippet nto "to" iA
 \to 
+endsnippet
+
+context "math()"
+snippet mto "maps to" iA
+\mapsto 
 endsnippet
 
 context "math()"
@@ -118,26 +123,30 @@ snippet lim "Limit" A
 \lim_{$1} $2
 endsnippet
 
-context "math()"
-snippet frac "Fraction" A
-\frac{$1}{$2} $3
+snippet ff "The LaTeX \frac{}{} command"
+\frac{$1}{$2}$0
 endsnippet
+
+# context "math()"
+# snippet frac "Fraction" A
+# \frac{$1}{$2} $3
+# endsnippet
 
 context "math()"
 snippet set "Set" A
 \\{ $1 \\}
 endsnippet
 
-context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
+# context "math()"
+# snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+# \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+# endsnippet
 
-context "math()"
-priority 100
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
+# context "math()"
+# priority 100
+# snippet "([a-zA-Z])hat" "hat" riA
+# \hat{`!p snip.rv=match.group(1)`}
+# endsnippet
 
 context "math()"
 priority 100
@@ -322,14 +331,24 @@ snippet bar "bar" iA
 \bar{$1}
 endsnippet
 
+# context "math()"
+# snippet Var "Variance" iA
+# \mathrm{Var}($1)
+# endsnippet
+
 context "math()"
 snippet Var "Variance" iA
-\mathrm{Var}($1)
+\V[$1]
 endsnippet
 
 context "math()"
 snippet Cov "Covariance" iA
 \mathrm{Cov}($1)
+endsnippet
+
+context "math()"
+snippet Ev "Expected Value" iA
+\EV[$1]
 endsnippet
 
 context "math()"
@@ -369,7 +388,7 @@ snippet min "min" iA
 endsnippet
 
 context "math()"
-snippet "(alpha|beta|gamma|delta|eps|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|ups|phi|chi|psi|omega|Alpha|Beta|Gamma|Delta|Epsilon|Zeta|Eta|Theta|Iota|Kappa|Lambda|Mu|Nu|Xi|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)" "auto Greek letter" wrA
+snippet "(alpha|beta|gamma|delta|eps|veps|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|ups|phi|chi|psi|omega|Alpha|Beta|Gamma|Delta|Epsilon|Zeta|Eta|Theta|Iota|Kappa|Lambda|Mu|Nu|Xi|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega)" "auto Greek letter" wrA
 `!p
 greek_map = {
     'alpha': '\\alpha',
@@ -377,6 +396,7 @@ greek_map = {
     'gamma': '\\gamma',
     'delta': '\\delta',
     'eps': '\\epsilon',
+    'veps': '\\varepsilon',
     'zeta': '\\zeta',
     'eta': '\\eta',
     'theta': '\\theta',
@@ -443,11 +463,11 @@ endsnippet
 
 context "math()"
 snippet hat "hat" iA
-\hat{$1} 
+\hat{$1}
 endsnippet
 
 context "math()"
-snippet tilde "hat" iA
+snippet tilde "tilde" iA
 \tilde{$1}
 endsnippet
 
@@ -483,4 +503,72 @@ snippet "(bmatrix|pmatrix)" "matrix environments" wrA
 $2
 endsnippet
 
+context "math()"
+snippet mid "conditional bar" iA
+\mid
+endsnippet
 
+context "math()"
+snippet trp "transpose" iA
+^\top
+endsnippet
+
+context "math()"
+snippet perp "perp" iA
+^\perp
+endsnippet
+
+
+snippet lr( "left( right)" iA
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+context "math()"
+snippet lr| "left| right|" iA
+\left| ${1:${VISUAL}} \right| $0
+endsnippet
+
+context "math()"
+snippet lr{ "left\{ right\}" iA
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+context "math()"
+snippet lrb "left\{ right\}" iA
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+context "math()"
+snippet lr[ "left[ right]" iA
+\left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+context "math()"
+snippet lr< "leftangle rightangle" iA
+\langle $1 \rangle
+endsnippet
+
+context "math()"
+snippet vlen "vlen" iA
+\| $1 \| 
+endsnippet
+
+context "math()"
+snippet quad "quad" iA
+\quad
+endsnippet
+
+context "math()"
+snippet plim "plim" iA
+\plim
+endsnippet
+
+context "math()"
+snippet aprx "approximate" iA
+\approx
+endsnippet
+
+context "math()"
+snippet bsymb "bold symbol" iA
+\boldsymbol{$1}
+endsnippet
