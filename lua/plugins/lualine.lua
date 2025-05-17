@@ -1,7 +1,9 @@
 return {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
+  'nvim-lualine/lualine.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  config = function()
+    require('lualine').setup({
+      options = {
         icons_enabled = true,
         theme = 'auto',
         component_separators = { left = '', right = ''},
@@ -17,12 +19,19 @@ return {
           statusline = 1000,
           tabline = 1000,
           winbar = 1000,
-        }
+        },
       },
       sections = {
         lualine_a = {'mode'},
         lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename'},
+        lualine_c = {
+          {
+            'filename',
+            path = 1,  -- full absolute path
+            shorting_target = 0,
+            file_status = true,
+          }
+        },
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
         lualine_z = {'location'}
@@ -39,4 +48,6 @@ return {
       winbar = {},
       inactive_winbar = {},
       extensions = {}
+    })
+  end
 }
