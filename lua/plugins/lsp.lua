@@ -1,4 +1,5 @@
 
+-- TODO: Add looser settings to pyright
 -- TODO: Remove LuaSnip as ultisnip is already in use?
 return {
     "neovim/nvim-lspconfig",
@@ -30,7 +31,7 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
+                -- "rust_analyzer",
                 "pyright",
                 -- "gopls",
                 "texlab",
