@@ -15,6 +15,7 @@ return {
         vim.keymap.set('n', '<leader>fs', builtin.grep_string, {})
         vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+        vim.keymap.set('n', '<leader>fr', require('telescope.builtin').lsp_references, {})
 
         -- Without ignore paths
         vim.keymap.set('n', '<leader>ffh', builtin.find_files, {})
@@ -28,4 +29,3 @@ return {
 
     end
 }
-
