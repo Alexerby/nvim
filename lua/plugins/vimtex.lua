@@ -14,7 +14,5 @@ return {
       "<cmd>VimtexTocToggle<cr>",
       desc = "Vimtex TOC",
     },
-  
  }
-
 }
