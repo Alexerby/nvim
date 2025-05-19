@@ -1,7 +1,9 @@
 -- TODO: Add looser settings to pyright
 -- TODO: Remove LuaSnip as ultisnip is already in use?
+
 return {
   "neovim/nvim-lspconfig",
+
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -18,32 +20,38 @@ return {
   },
 
   config = function()
+    -----------------------------------------------------------
+    -- Setup imports
+    -----------------------------------------------------------
     local lspconfig = require("lspconfig")
-    local cmp = require('cmp')
+    local cmp = require("cmp")
     local cmp_lsp = require("cmp_nvim_lsp")
 
+    -----------------------------------------------------------
+    -- Global diagnostic configuration
+    -----------------------------------------------------------
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = '●',  -- Could be '■', '▶', '▎', '●'
+        spacing = 2,
+      },
+      signs = true,
+      underline = true,
+      update_in_insert = true,
+      severity_sort = true,
+      float = {
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    })
 
-
-
-  vim.diagnostic.config({
-    virtual_text = {
-      prefix = '●', -- Could be '■', '▶', '▎', '●'
-      spacing = 2,
-    },
-    signs = true,           -- show signs in gutter
-    underline = true,       -- underline errors/warnings
-    update_in_insert = true, -- update diagnostics while typing
-    severity_sort = true,   -- sort diagnostics by severity
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  })
-
+    -----------------------------------------------------------
+    -- LSP capabilities (for nvim-cmp integration)
+    -----------------------------------------------------------
     local capabilities = vim.tbl_deep_extend(
       "force",
       {},
@@ -51,8 +59,11 @@ return {
       cmp_lsp.default_capabilities()
     )
 
-    -- Mason setup
+    -----------------------------------------------------------
+    -- Mason and mason-lspconfig setup
+    -----------------------------------------------------------
     require("mason").setup()
+
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
@@ -61,7 +72,7 @@ return {
       },
 
       handlers = {
-        -- Default handler for all servers except the ones we override below
+        -- Default handler
         function(server_name)
           if server_name == "tsserver" then
             server_name = "ts_ls"
@@ -71,14 +82,18 @@ return {
           })
         end,
 
-        -- Pyright setup explicitly
+        -------------------------------------------------------
+        -- Custom LSP setups
+        -------------------------------------------------------
+
+        -- Pyright
         ["pyright"] = function()
           lspconfig.pyright.setup({
             capabilities = capabilities,
             settings = {
               python = {
                 analysis = {
-                  typeCheckingMode = "strict", -- or "off", "strict"
+                  typeCheckingMode = "strict", -- or "off", "basic", "strict"
                   autoSearchPaths = true,
                   useLibraryCodeForTypes = true,
                 },
@@ -87,7 +102,7 @@ return {
           })
         end,
 
-        -- Zig language server
+        -- Zig LSP (zls)
         zls = function()
           lspconfig.zls.setup({
             root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
@@ -103,7 +118,7 @@ return {
           vim.g.zig_fmt_autosave = 0
         end,
 
-        -- Lua language server
+        -- Lua LSP
         ["lua_ls"] = function()
           lspconfig.lua_ls.setup({
             capabilities = capabilities,
@@ -111,7 +126,10 @@ return {
               Lua = {
                 runtime = { version = "Lua 5.1" },
                 diagnostics = {
-                  globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+                  globals = {
+                    "bit", "vim", "it", "describe",
+                    "before_each", "after_each"
+                  },
                 },
               },
             },
@@ -120,41 +138,32 @@ return {
       },
     })
 
-    -- CMP setup
+    -----------------------------------------------------------
+    -- Completion (nvim-cmp) setup
+    -----------------------------------------------------------
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
     cmp.setup({
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body)
+          require("luasnip").lsp_expand(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
         ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>']   = cmp.mapping.select_next_item(cmp_select),
+        ['<CR>']    = cmp.mapping.confirm({ select = true }),
       }),
       sources = cmp.config.sources(
         {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'ultisnips' },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "ultisnips" },
         },
         {
-          { name = 'buffer' },
+          { name = "buffer" },
         }
       )
-    })
-
-    -- Diagnostics UI setup
-    vim.diagnostic.config({
-      float = {
-        focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-      },
     })
   end
 }

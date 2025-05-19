@@ -1,60 +1,56 @@
+-- TODO: Move the keybindings into pluggings as possible
+
+-- Keymap Helper
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-
--- Misc
-map('i', 'jj', '<ESC>', opts )
+-----------------------------------------------------------
+-- General / Misc
+-----------------------------------------------------------
+map('i', 'jj', '<ESC>', opts)
 map('n', '<leader>d', '<Cmd>nohlsearch<CR>', opts)
+map('n', '<F4>', ':w<CR>:!python3 %<CR>', opts)
 
+-----------------------------------------------------------
+-- Neotree
+-----------------------------------------------------------
+map('n', '<leader>e', '<Cmd>Neotree toggle<CR>', opts)
 
--- Barbar
----------------------
+-----------------------------------------------------------
+-- LSP (Language Server Protocol)
+-----------------------------------------------------------
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+map('n', 'dg', '<cmd>nohlsearch<CR>', opts)  -- Fixed incomplete command
 
--- Move to previous/next
+-----------------------------------------------------------
+-- Barbar Keymaps
+-- Plugin: barbar.nvim
+-----------------------------------------------------------
+
+-- Navigation
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 
--- Re-order to previous/next
-map('n', '<A->>', '<Cmd>BufferMovePrevious<CR>', opts)
-map('n', '<A-<>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Reordering
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
 
--- Goto buffer in position...
-map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+-- Go to specific buffer
+for i = 1, 9 do
+  map('n', '<A-' .. i .. '>', '<Cmd>BufferGoto ' .. i .. '<CR>', opts)
+end
 map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 
--- Pin/unpin buffer
+-- Pin / Unpin
 map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 
 -- Close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 
--- Sort automatically by...
+-- Sort buffers
 map('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
 map('n', '<leader>bn', '<Cmd>BufferOrderByName<CR>', opts)
 map('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
 map('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 map('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
-
-
--- Neotree
----------------------
-map('n', '<leader>e', '<Cmd>Neotree toggle<CR>', opts)
-
-
--- LSP
----------------------
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-map('n', 'dg', '<cmd>nohlsearch', opts)
-
-
-
-vim.api.nvim_set_keymap('n', '<F4>', ':w<CR>:!python3 %<CR>', { noremap = true, silent = true })
