@@ -1,26 +1,40 @@
+-----------------------------------------------------------
+-- General Options
+-----------------------------------------------------------
 vim.opt.guicursor = ""
-vim.opt.spelllang = 'en_gb'
+vim.opt.clipboard = "unnamedplus"
+vim.opt.conceallevel = 1
+
+-----------------------------------------------------------
+-- Spell Check
+-----------------------------------------------------------
 vim.opt.spell = true
+vim.opt.spelllang = { "en_gb" }
 
+-----------------------------------------------------------
+-- UI Settings
+-----------------------------------------------------------
 vim.o.termguicolors = true
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-----------------------------------------------------------
+-- Indentation
+-----------------------------------------------------------
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.bo.softtabstop = 2
 vim.opt.expandtab = true
-vim.opt.conceallevel = 1
 
-vim.opt.clipboard = "unnamedplus"
+-----------------------------------------------------------
+-- Autocommands
+-----------------------------------------------------------
+-- Disable Treesitter highlighting for LaTeX (.tex) files
+-- as Vimtex handles it
 
--- Create an autocmd group to avoid duplication
-vim.api.nvim_create_augroup("MyTexAutocmds", { clear = true })
-
--- Define the autocmd for .tex files
+local tex_group = vim.api.nvim_create_augroup("MyTexAutocmds", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  group = "MyTexAutocmds",
+  group = tex_group,
   pattern = "tex",
-  command = "TSDisable highlight"
+  command = "TSDisable highlight",
 })
